@@ -18,12 +18,12 @@ type TestingS struct {
 }
 
 func TestInsertAndDeleteOne(t *testing.T) {
-	err := mongo_utils.Insert(db, collection, TestingS{Val: field})
+	err := mongo_utils.InsertOne(db, collection, TestingS{Val: field})
 	if err != nil {
 		t.Error(err)
 	}
 
-	err = mongo_utils.Delete(db, collectionName, TestingS{Val: field})
+	err = mongo_utils.DeleteOne(db, collectionName, TestingS{Val: field})
 
 	if err != nil {
 		t.Error(err)
@@ -39,7 +39,7 @@ func TestInsertAndDeleteMany(t *testing.T) {
 		TestingS{Val: field + " go"},
 	)
 
-	err := mongo_utils.Inserts(db, collection, datas)
+	err := mongo_utils.InsertMany(db, collection, datas)
 	if err != nil {
 		t.Error(err)
 	}
@@ -51,13 +51,13 @@ func TestInsertAndDeleteMany(t *testing.T) {
 }
 
 func TestUpdateOne(t *testing.T) {
-	err := mongo_utils.Insert(db, collection, TestingS{Val: field})
+	err := mongo_utils.InsertOne(db, collection, TestingS{Val: field})
 
 	if err != nil {
 		t.Error(err)
 	}
 
-	err = mongo_utils.Update(db, collection, TestingS{Val: field},
+	err = mongo_utils.UpdateOne(db, collection, TestingS{Val: field},
 		bson.D{
 			{"$set", bson.D{
 				{
@@ -71,7 +71,7 @@ func TestUpdateOne(t *testing.T) {
 		t.Error(err)
 	}
 
-	err = mongo_utils.Delete(db, collectionName, TestingS{Val: fieldUpdate})
+	err = mongo_utils.DeleteOne(db, collectionName, TestingS{Val: fieldUpdate})
 	if err != nil {
 		t.Error(err)
 	}
@@ -86,7 +86,7 @@ func TestUpdateMany(t *testing.T) {
 		TestingS{Val: field + " go"},
 	)
 
-	err := mongo_utils.Inserts(db, collection, datas)
+	err := mongo_utils.InsertMany(db, collection, datas)
 
 	if err != nil {
 		t.Error(err)

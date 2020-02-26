@@ -15,7 +15,7 @@ type Test struct {
 }
 
 func testInsertOne() {
-	err := mongo_utils.Insert(databaseName, collectionName, Test{Name: "test"})
+	err := mongo_utils.InsertOne(databaseName, collectionName, Test{Name: "test"})
 	if err != nil {
 		panic(err)
 	}
@@ -28,14 +28,14 @@ func testInsertMany() {
 	testData = append(testData, Test{Name: "Test 2"})
 	testData = append(testData, Test{Name: "Test 3"})
 
-	err := mongo_utils.Inserts(databaseName, collectionName, testData)
+	err := mongo_utils.InsertMany(databaseName, collectionName, testData)
 	if err != nil {
 		panic(err)
 	}
 }
 
 func testFindOne() {
-	_, err := mongo_utils.Find(databaseName, collectionName, Test{Name: "Test 177"})
+	_, err := mongo_utils.FindOne(databaseName, collectionName, Test{Name: "Test 177"})
 	if err != nil {
 		panic(err)
 	}
@@ -51,7 +51,7 @@ func testFindMany() {
 }
 
 func testUpdateOne() {
-	err := mongo_utils.Update(databaseName, collectionName,
+	err := mongo_utils.UpdateOne(databaseName, collectionName,
 		bson.D{
 			{
 				"name", "test",
@@ -72,7 +72,7 @@ func testUpdateOne() {
 }
 
 func testUpdateMany() {
-	err := mongo_utils.Update(databaseName, collectionName,
+	err := mongo_utils.UpdateOne(databaseName, collectionName,
 		bson.D{
 			{
 				"name", "tesssdfdsdfdsfdsfdst",
@@ -93,7 +93,7 @@ func testUpdateMany() {
 }
 
 func testDeleteOne() {
-	err := mongo_utils.Delete(
+	err := mongo_utils.DeleteOne(
 		databaseName,
 		collectionName,
 		bson.D{

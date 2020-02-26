@@ -33,7 +33,6 @@ func init() {
 	var c *mongo.Client
 	var err error
 
-	print(os.Getenv("MONGOAUTHDB"))
 	if os.Getenv("MONGOHOST") != "" && os.Getenv("MONGOPORT") != ""{
 		if os.Getenv("MONGOUSER") != "" && os.Getenv("MONGOPASSWORD") != "" && os.Getenv("MONGOAUTHDB") != "" {
 			c, err = mongo.Connect(ctx, options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s@%s:%s/%s",os.Getenv("MONGOUSER"), os.Getenv("MONGOPASSWORD"), os.Getenv("MONGOHOST"), os.Getenv("MONGOPORT"), os.Getenv("MONGOAUTHDB"))))
@@ -41,7 +40,7 @@ func init() {
 			c, err = mongo.Connect(ctx, options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s", os.Getenv("MONGOHOST"), os.Getenv("MONGOPORT"))))
 		}
 	} else {
-		c, err = mongo.Connect(ctx, options.Client().ApplyURI(fmt.Sprintf("mongodb://%sfgfd", dbhost)))
+		c, err = mongo.Connect(ctx, options.Client().ApplyURI(fmt.Sprintf("mongodb://%s", dbhost)))
 	}
 
 
@@ -61,7 +60,7 @@ func connect(databaseName string, collectionName string) *mongo.Collection {
 	return client.Database(databaseName).Collection(collectionName)
 }
 
-func Find(db string, col string, search interface{}) (interface{}, error) {
+func FindOne(db string, col string, search interface{}) (interface{}, error) {
 	collection := connect(db, col)
 
 	var resultat interface{}
@@ -110,7 +109,7 @@ func FindMany(db string, col string, search interface{}) ([]interface{}, error) 
 	return resultats, nil
 }
 
-func Insert(db string, col string, data interface{}) error {
+func InsertOne(db string, col string, data interface{}) error {
 	collection := connect(db, col)
 
 	res, errInsert := collection.InsertOne(ctx, data)
@@ -123,7 +122,7 @@ func Insert(db string, col string, data interface{}) error {
 	return nil
 }
 
-func Inserts(db string, col string, data []interface{}) error {
+func InsertMany(db string, col string, data []interface{}) error {
 	collection := connect(db, col)
 
 	res, errInserts := collection.InsertMany(ctx, data)
@@ -136,7 +135,7 @@ func Inserts(db string, col string, data []interface{}) error {
 	return nil
 }
 
-func Update(db string, col string, search interface{}, data interface{}) error {
+func UpdateOne(db string, col string, search interface{}, data interface{}) error {
 	collection := connect(db, col)
 
 	res, errInsert := collection.UpdateOne(ctx, search, data)
@@ -164,7 +163,7 @@ func UpdateMany(db string, col string, search interface{}, data interface{}) err
 	return nil
 }
 
-func Delete(db string, col string, search interface{}) error {
+func DeleteOne(db string, col string, search interface{}) error {
 	collection := connect(db, col)
 
 	res, errInsert := collection.DeleteOne(ctx, search)
