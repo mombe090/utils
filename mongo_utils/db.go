@@ -109,30 +109,30 @@ func FindMany(db string, col string, search interface{}) ([]interface{}, error) 
 	return resultats, nil
 }
 
-func InsertOne(db string, col string, data interface{}) error {
+func InsertOne(db string, col string, data interface{}) (interface{}, error) {
 	collection := connect(db, col)
 
 	res, errInsert := collection.InsertOne(ctx, data)
 
 	if errInsert != nil {
-		return errInsert
+		return nil, errInsert
 	}
 
 	log.Println(res.InsertedID)
-	return nil
+	return res.InsertedID, nil
 }
 
-func InsertMany(db string, col string, data []interface{}) error {
+func InsertMany(db string, col string, data []interface{}) ([]interface{}, error) {
 	collection := connect(db, col)
 
 	res, errInserts := collection.InsertMany(ctx, data)
 
 	if errInserts != nil {
-		return errInserts
+		return nil, errInserts
 	}
 
 	log.Println("Successfully add with IDS ", res.InsertedIDs)
-	return nil
+	return res.InsertedIDs, nil
 }
 
 func UpdateOne(db string, col string, search interface{}, data interface{}) error {
