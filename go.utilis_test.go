@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/mombe090/utils/mongo_utils"
 	"go.mongodb.org/mongo-driver/bson"
-	"mombe090/utils/mongo_utils"
 	"testing"
 )
 

@@ -3,11 +3,13 @@ package mongo_utils
 import (
 	"context"
 	"fmt"
+	"github.com/subosito/gotenv"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
-	"gopkg.in/mgo.v2/bson"
 	"log"
+	"os"
 	"strings"
 	"time"
 )
@@ -25,9 +27,23 @@ var client *mongo.Client
 var ctx context.Context
 
 func init() {
+	gotenv.Load()
 	ctx, _ = context.WithTimeout(context.Background(), timeout)
 	//mongodb://user:password@host:port/userDb
-	c, err := mongo.Connect(ctx, options.Client().ApplyURI(fmt.Sprintf("mongodb://%s", dbhost)))
+	var c *mongo.Client
+	var err error
+
+	print(os.Getenv("MONGOAUTHDB"))
+	if os.Getenv("MONGOHOST") != "" && os.Getenv("MONGOPORT") != ""{
+		if os.Getenv("MONGOUSER") != "" && os.Getenv("MONGOPASSWORD") != "" && os.Getenv("MONGOAUTHDB") != "" {
+			c, err = mongo.Connect(ctx, options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s@%s:%s/%s",os.Getenv("MONGOUSER"), os.Getenv("MONGOPASSWORD"), os.Getenv("MONGOHOST"), os.Getenv("MONGOPORT"), os.Getenv("MONGOAUTHDB"))))
+		} else {
+			c, err = mongo.Connect(ctx, options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s", os.Getenv("MONGOHOST"), os.Getenv("MONGOPORT"))))
+		}
+	} else {
+		c, err = mongo.Connect(ctx, options.Client().ApplyURI(fmt.Sprintf("mongodb://%sfgfd", dbhost)))
+	}
+
 
 	if err != nil {
 		log.Fatal(err)
