@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="46686cd1-7c22-4886-965a-204abeab363b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileColors">
+    <fileColor scope="Non-Project Files (Material Default)" color="2E3C43" />
+    <fileColor scope="Non-Project Files (Material Darker)" color="323232" />
+    <fileColor scope="Non-Project Files (Material Lighter)" color="eae8e8" />
+    <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
+    <fileColor scope="Non-Project Files (Material Oceanic)" color="2E3C43" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="/usr/local/Cellar/go/1.13.6/libexec" />
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/Documents/WorkStation/MTN/dev-projects/new-selfcare/user-service" value="PREVIEW" />
+        <entry key="$USER_HOME$/Documents/Workstation/gradle-project/libs-kotlin" value="PREVIEW" />
+        <entry key="$USER_HOME$/Documents/Workstation/java/spring/todo-backend-spring4-java8" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectId" id="1YLmTOcu4TIcgV0MzKOL4qpxeuo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="C:/Program Files/nodejs/node" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mongo" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Test.go test mombe090/utils">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="go build mombe090/utils" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="utils" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="mombe090/utils" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestInsertOne in mombe090/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="utils" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="mombe090/utils" />
+      <pattern value="^TestInsertOne$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go test mombe090/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="utils" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="mombe090/utils" />
+      <method v="2" />
+    </configuration>
+    <configuration name="gobench mombe090/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="utils" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gobench" />
+      <kind value="PACKAGE" />
+      <package value="mombe090/utils" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.go test mombe090/utils" />
+        <item itemvalue="Go Test.gobench mombe090/utils" />
+        <item itemvalue="Go Test.TestInsertOne in mombe090/utils" />
+        <item itemvalue="Go Build.go build mombe090/utils" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1398" height="176" key="GridCell.Tab.0.bottom" timestamp="1582742802117">
+      <screen x="0" y="23" width="1440" height="842" />
+    </state>
+    <state width="1398" height="176" key="GridCell.Tab.0.bottom/0.23.1440.842@0.23.1440.842" timestamp="1582742802117" />
+    <state width="1398" height="176" key="GridCell.Tab.0.center" timestamp="1582742802116">
+      <screen x="0" y="23" width="1440" height="842" />
+    </state>
+    <state width="1398" height="176" key="GridCell.Tab.0.center/0.23.1440.842@0.23.1440.842" timestamp="1582742802116" />
+    <state width="1398" height="176" key="GridCell.Tab.0.left" timestamp="1582742802115">
+      <screen x="0" y="23" width="1440" height="842" />
+    </state>
+    <state width="1398" height="176" key="GridCell.Tab.0.left/0.23.1440.842@0.23.1440.842" timestamp="1582742802115" />
+    <state width="1398" height="176" key="GridCell.Tab.0.right" timestamp="1582742802116">
+      <screen x="0" y="23" width="1440" height="842" />
+    </state>
+    <state width="1398" height="176" key="GridCell.Tab.0.right/0.23.1440.842@0.23.1440.842" timestamp="1582742802116" />
+  </component>
+</project>
