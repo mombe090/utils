@@ -1,4 +1,4 @@
-module mombe090/utils
+module github.com/mombe090/utils
 
 go 1.13
 
