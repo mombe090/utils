@@ -144,6 +144,7 @@ func main() {
 	//testInsertOne()
 	//testInsertMany()
 	testFindMany()
+	testFindMany()
 	//testFindOne()
 	//testUpdateMany()
 	//testDeleteOne()
