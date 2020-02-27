@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/mombe090/utils/mongo_utils"
 	"go.mongodb.org/mongo-driver/bson"
+	"log"
 )
 
 const (
@@ -47,11 +48,23 @@ func testFindOne() {
 }
 
 func testFindMany() {
-	res, err := mongo_utils.FindMany(databaseName, collectionName, Test{Name: "Test 1"})
-	fmt.Println(res)
+	curr, ctx, err := mongo_utils.FindMany(databaseName, collectionName, Test{Name: "Test 1"})
+
 	if err != nil {
 		panic(err)
 	}
+
+	for curr.Next(*ctx) {
+		var resTmp map[string]interface{}
+		err := curr.Decode(&resTmp)
+
+		if err != nil {
+			log.Print(err)
+		}
+		fmt.Println(resTmp["_id"])
+	}
+
+	//log.Println("Finds", resultats)
 
 }
 

@@ -80,34 +80,20 @@ func FindOne(db string, col string, search interface{}) (interface{}, error) {
 	return resultat, nil
 }
 
-func FindMany(db string, col string, search interface{}) ([]map[string]interface{}, error) {
+func FindMany(db string, col string, search interface{}) (*mongo.Cursor, *context.Context, error) {
 	collection := connect(db, col)
-
-	var resultats = make([]map[string]interface{}, 1, 1)
 
 	curr, err := collection.Find(ctx, search)
 
 	if err != nil {
 		if strings.Contains(err.Error(), "no documents in result") {
 			log.Println("No document founded {}")
-			return resultats, nil
+			return nil, &ctx, nil
 		}
-		return nil, err
+		return nil, &ctx, err
 	}
 
-	for curr.Next(ctx) {
-		var resTmp map[string]interface{}
-		err := curr.Decode(&resTmp)
-
-		if err != nil {
-			log.Print(err)
-			return nil, err
-		}
-		resultats = append(resultats, resTmp)
-	}
-
-	log.Println("Finds", resultats)
-	return resultats, nil
+	return curr, &ctx, nil
 }
 
 func InsertOne(db string, col string, data interface{}) (string, error) {
