@@ -25,11 +25,10 @@ const (
 )
 
 var client *mongo.Client
-var ctx context.Context
 
 func init() {
 	gotenv.Load()
-	ctx, _ = context.WithTimeout(context.Background(), timeout)
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	//mongodb://user:password@host:port/userDb
 	var c *mongo.Client
 	var err error
@@ -65,6 +64,7 @@ func connect(databaseName string, collectionName string) *mongo.Collection {
 func FindOne(db string, col string, search interface{}) *mongo.SingleResult {
 	collection := connect(db, col)
 
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	resp := collection.FindOne(ctx, search)
 
 	return resp
@@ -73,6 +73,7 @@ func FindOne(db string, col string, search interface{}) *mongo.SingleResult {
 func FindMany(db string, col string, search interface{}) (*mongo.Cursor, *context.Context, error) {
 	collection := connect(db, col)
 
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	curr, err := collection.Find(ctx, search)
 
 	if err != nil {
@@ -89,6 +90,7 @@ func FindMany(db string, col string, search interface{}) (*mongo.Cursor, *contex
 func InsertOne(db string, col string, data interface{}) (string, error) {
 	collection := connect(db, col)
 
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	res, errInsert := collection.InsertOne(ctx, data)
 
 	if errInsert != nil {
@@ -106,6 +108,7 @@ func InsertOne(db string, col string, data interface{}) (string, error) {
 func InsertMany(db string, col string, data []interface{}) ([]string, error) {
 	collection := connect(db, col)
 
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	res, errInserts := collection.InsertMany(ctx, data)
 
 	if errInserts != nil {
@@ -126,6 +129,7 @@ func InsertMany(db string, col string, data []interface{}) ([]string, error) {
 func UpdateOne(db string, col string, search interface{}, data interface{}) error {
 	collection := connect(db, col)
 
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	res, errInsert := collection.UpdateOne(ctx, search, data)
 
 	if errInsert != nil {
@@ -140,6 +144,7 @@ func UpdateOne(db string, col string, search interface{}, data interface{}) erro
 func UpdateMany(db string, col string, search interface{}, data interface{}) error {
 	collection := connect(db, col)
 
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	res, errInsert := collection.UpdateMany(ctx, search, data)
 
 	if errInsert != nil {
@@ -154,6 +159,7 @@ func UpdateMany(db string, col string, search interface{}, data interface{}) err
 func DeleteOne(db string, col string, search interface{}) error {
 	collection := connect(db, col)
 
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	res, errInsert := collection.DeleteOne(ctx, search)
 
 	if errInsert != nil {
@@ -167,6 +173,7 @@ func DeleteOne(db string, col string, search interface{}) error {
 func DeleteMany(db string, col string, search interface{}) error {
 	collection := connect(db, col)
 
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	res, errInsert := collection.DeleteMany(ctx, search)
 
 	if errInsert != nil {
