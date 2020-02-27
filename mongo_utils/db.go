@@ -2,9 +2,11 @@ package mongo_utils
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"github.com/subosito/gotenv"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -109,20 +111,24 @@ func FindMany(db string, col string, search interface{}) ([]interface{}, error) 
 	return resultats, nil
 }
 
-func InsertOne(db string, col string, data interface{}) (interface{}, error) {
+func InsertOne(db string, col string, data interface{}) (string, error) {
 	collection := connect(db, col)
 
 	res, errInsert := collection.InsertOne(ctx, data)
 
 	if errInsert != nil {
-		return nil, errInsert
+		return "", errInsert
 	}
 
-	log.Println(res.InsertedID)
-	return res.InsertedID, nil
+
+	if oid, ok := res.InsertedID.(primitive.ObjectID); ok {
+		return oid.Hex(), nil
+	} else {
+		return "", errors.New("not objectId returned")
+	}
 }
 
-func InsertMany(db string, col string, data []interface{}) ([]interface{}, error) {
+func InsertMany(db string, col string, data []interface{}) ([]string, error) {
 	collection := connect(db, col)
 
 	res, errInserts := collection.InsertMany(ctx, data)
@@ -131,8 +137,15 @@ func InsertMany(db string, col string, data []interface{}) ([]interface{}, error
 		return nil, errInserts
 	}
 
+	var ids []string
+	for _, e := range res.InsertedIDs {
+		if oid, ok := e.(primitive.ObjectID); ok {
+			ids = append(ids, oid.Hex())
+		}
+	}
+
 	log.Println("Successfully add with IDS ", res.InsertedIDs)
-	return res.InsertedIDs, nil
+	return ids, nil
 }
 
 func UpdateOne(db string, col string, search interface{}, data interface{}) error {
