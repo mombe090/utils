@@ -61,6 +61,7 @@ func connect(databaseName string, collectionName string) *mongo.Collection {
 	return client.Database(databaseName).Collection(collectionName)
 }
 
+// Search and find by id
 func FindOne(db string, col string, search interface{}) *mongo.SingleResult {
 	collection := connect(db, col)
 
