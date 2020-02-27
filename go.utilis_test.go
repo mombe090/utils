@@ -18,7 +18,7 @@ type TestingS struct {
 }
 
 func TestInsertAndDeleteOne(t *testing.T) {
-	err := mongo_utils.InsertOne(db, collection, TestingS{Val: field})
+	_, err := mongo_utils.InsertOne(db, collection, TestingS{Val: field})
 	if err != nil {
 		t.Error(err)
 	}
@@ -39,7 +39,7 @@ func TestInsertAndDeleteMany(t *testing.T) {
 		TestingS{Val: field + " go"},
 	)
 
-	err := mongo_utils.InsertMany(db, collection, datas)
+	_, err := mongo_utils.InsertMany(db, collection, datas)
 	if err != nil {
 		t.Error(err)
 	}
@@ -51,7 +51,7 @@ func TestInsertAndDeleteMany(t *testing.T) {
 }
 
 func TestUpdateOne(t *testing.T) {
-	err := mongo_utils.InsertOne(db, collection, TestingS{Val: field})
+	_,  err := mongo_utils.InsertOne(db, collection, TestingS{Val: field})
 
 	if err != nil {
 		t.Error(err)
@@ -86,7 +86,7 @@ func TestUpdateMany(t *testing.T) {
 		TestingS{Val: field + " go"},
 	)
 
-	err := mongo_utils.InsertMany(db, collection, datas)
+	_, err := mongo_utils.InsertMany(db, collection, datas)
 
 	if err != nil {
 		t.Error(err)

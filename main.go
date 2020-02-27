@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/mombe090/utils/mongo_utils"
 	"go.mongodb.org/mongo-driver/bson"
 )
@@ -15,10 +16,11 @@ type Test struct {
 }
 
 func testInsertOne() {
-	err := mongo_utils.InsertOne(databaseName, collectionName, Test{Name: "test"})
+	res, err := mongo_utils.InsertOne(databaseName, collectionName, Test{Name: "test"})
 	if err != nil {
 		panic(err)
 	}
+	fmt.Sprintf(res)
 }
 
 func testInsertMany() {
@@ -28,10 +30,12 @@ func testInsertMany() {
 	testData = append(testData, Test{Name: "Test 2"})
 	testData = append(testData, Test{Name: "Test 3"})
 
-	err := mongo_utils.InsertMany(databaseName, collectionName, testData)
+	res, err := mongo_utils.InsertMany(databaseName, collectionName, testData)
 	if err != nil {
 		panic(err)
 	}
+
+	fmt.Println(res)
 }
 
 func testFindOne() {
