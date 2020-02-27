@@ -61,23 +61,12 @@ func connect(databaseName string, collectionName string) *mongo.Collection {
 	return client.Database(databaseName).Collection(collectionName)
 }
 
-func FindOne(db string, col string, search interface{}) (map[string]interface{}, error) {
+func FindOne(db string, col string, search interface{}) *mongo.SingleResult {
 	collection := connect(db, col)
 
-	var resultat map[string]interface{}
+	resp := collection.FindOne(ctx, search)
 
-	err := collection.FindOne(ctx, search).Decode(&resultat)
-
-	if err != nil {
-		if strings.Contains(err.Error(), "no documents in result") {
-			log.Println("No document founded {}")
-			return resultat, nil
-		}
-		return nil, err
-	}
-
-	log.Println("Find", resultat)
-	return resultat, nil
+	return resp
 }
 
 func FindMany(db string, col string, search interface{}) (*mongo.Cursor, *context.Context, error) {

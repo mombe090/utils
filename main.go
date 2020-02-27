@@ -43,7 +43,7 @@ func testInsertMany() {
 
 func testFindOne() {
 	ojb, err := primitive.ObjectIDFromHex("5e572453425958c7c44e1143")
-	_, err = mongo_utils.FindOne(databaseName, collectionName, bson.M{"_id": ojb })
+	_ = mongo_utils.FindOne(databaseName, collectionName, bson.M{"_id": ojb })
 	if err != nil {
 		panic(err)
 	}
