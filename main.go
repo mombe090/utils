@@ -47,7 +47,8 @@ func testFindOne() {
 }
 
 func testFindMany() {
-	_, err := mongo_utils.FindMany(databaseName, collectionName, Test{Name: "Test 1"})
+	res, err := mongo_utils.FindMany(databaseName, collectionName, Test{Name: "Test 1"})
+	fmt.Println(res)
 	if err != nil {
 		panic(err)
 	}
@@ -128,10 +129,11 @@ func testDeleteMany() {
 
 func main() {
 	testInsertOne()
-	//testInsertMany()
+	testInsertMany()
+	testFindMany()
 	//testFindOne()
 	//testUpdateMany()
 	//testDeleteOne()
-	testDeleteMany()
+	//testDeleteMany()
 
 }
