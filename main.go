@@ -128,8 +128,8 @@ func testDeleteMany() {
 }
 
 func main() {
-	testInsertOne()
-	testInsertMany()
+	//testInsertOne()
+	//testInsertMany()
 	testFindMany()
 	//testFindOne()
 	//testUpdateMany()

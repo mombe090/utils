@@ -2,11 +2,9 @@ package mongo_utils
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/subosito/gotenv"
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -85,7 +83,7 @@ func FindOne(db string, col string, search interface{}) (interface{}, error) {
 func FindMany(db string, col string, search interface{}) ([]map[string]interface{}, error) {
 	collection := connect(db, col)
 
-	var resultats []map[string]interface{}
+	var resultats = make([]map[string]interface{}, 1, 1)
 
 	curr, err := collection.Find(ctx, search)
 
@@ -98,21 +96,14 @@ func FindMany(db string, col string, search interface{}) ([]map[string]interface
 	}
 
 	for curr.Next(ctx) {
-		var bsonDocument bson.D
-		var jsonDocument map[string]interface{}
-		var temporaryBytes []byte
-
-		err := curr.Decode(&bsonDocument)
+		var resTmp map[string]interface{}
+		err := curr.Decode(&resTmp)
 
 		if err != nil {
 			log.Print(err)
 			return nil, err
 		}
-
-		temporaryBytes, err = bson.MarshalExtJSON(bsonDocument, true, true)
-		err = json.Unmarshal(temporaryBytes, &jsonDocument)
-
-		resultats = append(resultats, jsonDocument)
+		resultats = append(resultats, resTmp)
 	}
 
 	log.Println("Finds", resultats)
