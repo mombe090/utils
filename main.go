@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/mombe090/utils/mongo_utils"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"log"
 )
 
@@ -13,6 +14,7 @@ const (
 )
 
 type Test struct {
+	ID string `json:"id" bson:"_id"`
 	Name string `json:"name"`
 }
 
@@ -40,7 +42,8 @@ func testInsertMany() {
 }
 
 func testFindOne() {
-	_, err := mongo_utils.FindOne(databaseName, collectionName, Test{Name: "Test 177"})
+	ojb, err := primitive.ObjectIDFromHex("5e572453425958c7c44e1143")
+	_, err = mongo_utils.FindOne(databaseName, collectionName, bson.M{"_id": ojb })
 	if err != nil {
 		panic(err)
 	}
@@ -143,9 +146,8 @@ func testDeleteMany() {
 func main() {
 	//testInsertOne()
 	//testInsertMany()
-	testFindMany()
-	testFindMany()
-	//testFindOne()
+	//testFindMany()
+	testFindOne()
 	//testUpdateMany()
 	//testDeleteOne()
 	//testDeleteMany()

@@ -64,7 +64,7 @@ func connect(databaseName string, collectionName string) *mongo.Collection {
 func FindOne(db string, col string, search interface{}) (interface{}, error) {
 	collection := connect(db, col)
 
-	var resultat interface{}
+	var resultat map[string]interface{}
 
 	err := collection.FindOne(ctx, search).Decode(&resultat)
 
