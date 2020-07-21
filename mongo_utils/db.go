@@ -56,7 +56,7 @@ func init() {
 	client = c
 }
 
-func initDB(MONGOHOST string, MONGOPORT string) {
+func InitDB(MONGOHOST string, MONGOPORT string) {
 	gotenv.Load()
 	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	//mongodb://user:password@host:port/userDb
