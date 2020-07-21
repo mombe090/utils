@@ -56,6 +56,31 @@ func init() {
 	client = c
 }
 
+func initDB(MONGOHOST string, MONGOPORT string) {
+	gotenv.Load()
+	ctx, _ := context.WithTimeout(context.Background(), timeout)
+	//mongodb://user:password@host:port/userDb
+	var c *mongo.Client
+	var err error
+
+
+	c, err = mongo.Connect(ctx, options.Client().ApplyURI(
+		fmt.Sprintf("mongodb://%s:%s", MONGOHOST, MONGOPORT)),
+	)
+
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = c.Ping(ctx, readpref.Primary())
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	client = c
+}
+
 func connect(databaseName string, collectionName string) *mongo.Collection {
 	return client.Database(databaseName).Collection(collectionName)
 }
